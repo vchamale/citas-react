@@ -34,7 +34,6 @@ function Formulario({ paciente, pacientes, setPacientes, setPaciente }) {
 
     if ([nombre, propietario, email, fecha, sintomas].includes('')) {
       setError(true);
-      return;
     } else {
       setError(false);
 
