@@ -1,8 +1,26 @@
+import { useQuery, gql } from '@apollo/client';
+
+const titleQUERY = gql`
+  query title {
+    mainTitleCollection {
+      items {
+        titleP1
+        titleP2
+      }
+    }
+  }
+`;
+
 function Header() {
-  return (
+  const { data, loading } = useQuery(titleQUERY);
+  return loading ? (
+    <>loading</>
+  ) : (
     <h1 className="font-black text-5xl text-center md:w-2/3 mx-auto">
-      Seguimiento Pacientes {''}
-      <span className="text-indigo-600">Veterinaria</span>
+      {data.mainTitleCollection.items[0].titleP1} {''}
+      <span className="text-indigo-600">
+        {data.mainTitleCollection.items[0].titleP2}
+      </span>
     </h1>
   );
 }

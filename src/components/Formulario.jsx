@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Error from './Error';
 
-function Formulario({ paciente, pacientes, setPacientes, setPaciente }) {
+function Formulario({ paciente, pacientes, setPacientes, setPaciente, data }) {
   const [nombre, setNombre] = useState('');
   const [propietario, setPropietario] = useState('');
   const [email, setEmail] = useState('');
@@ -72,11 +72,15 @@ function Formulario({ paciente, pacientes, setPacientes, setPaciente }) {
 
   return (
     <div className="md:w-1/2 lg:w-2/5 mx-5">
-      <h2 className="font-black text-3xl text-center">Seguimiento Pacientes</h2>
+      <h2 className="font-black text-3xl text-center">
+        {data.formLabelsCollection.items[0].titleP1}
+      </h2>
 
       <p className="text-lg mt-5 text-center mb-10">
-        Añade Pacientes y {''}
-        <span className="text-indigo-600 font-bold ">Administralos</span>
+        {data.formLabelsCollection.items[0].titleP1} {''}
+        <span className="text-indigo-600 font-bold ">
+          {data.formLabelsCollection.items[0].titleP3}
+        </span>
       </p>
       <form
         onSubmit={handleSubmit}
@@ -84,17 +88,17 @@ function Formulario({ paciente, pacientes, setPacientes, setPaciente }) {
       >
         {error && (
           <Error>
-            <p>Todos los campos son obligatorios</p>
+            <p>{data.formLabelsCollection.items[0].error}</p>
           </Error>
         )}
         <div className="mb-5">
           <label htmlFor="mascota" className="block text-gray-700">
-            Nombre Mascota
+            {data.formLabelsCollection.items[0].petName}
           </label>
           <input
             id="mascota"
             type="text"
-            placeholder="Nombre de la Mascota"
+            placeholder={data.formLabelsCollection.items[0].phPetName}
             className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
             value={nombre}
             onChange={(e) => setNombre(e.target.value)}
@@ -102,12 +106,12 @@ function Formulario({ paciente, pacientes, setPacientes, setPaciente }) {
         </div>
         <div className="mb-5">
           <label htmlFor="propietario" className="block text-gray-700">
-            Nombre Propietario
+            {data.formLabelsCollection.items[0].owner}
           </label>
           <input
             id="propietario"
             type="text"
-            placeholder="Nombre del propietario"
+            placeholder={data.formLabelsCollection.items[0].phOwner}
             className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
             value={propietario}
             onChange={(e) => setPropietario(e.target.value)}
@@ -115,12 +119,12 @@ function Formulario({ paciente, pacientes, setPacientes, setPaciente }) {
         </div>
         <div className="mb-5">
           <label htmlFor="email" className="block text-gray-700">
-            Email
+            {data.formLabelsCollection.items[0].email}
           </label>
           <input
             id="email"
             type="email"
-            placeholder="Email Contacto Propietario"
+            placeholder={data.formLabelsCollection.items[0].phEmail}
             className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -128,7 +132,7 @@ function Formulario({ paciente, pacientes, setPacientes, setPaciente }) {
         </div>
         <div className="mb-5">
           <label htmlFor="alta" className="block text-gray-700">
-            Alta
+            {data.formLabelsCollection.items[0].date}
           </label>
           <input
             id="alta"
@@ -140,21 +144,25 @@ function Formulario({ paciente, pacientes, setPacientes, setPaciente }) {
         </div>
         <div className="mb-5">
           <label htmlFor="sintomas" className="block text-gray-700">
-            Nombre Propietario
+            {data.formLabelsCollection.items[0].symptoms}
           </label>
           <textarea
-            id="sintomas"
+            id="phSymptomps"
             className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
             value={sintomas}
             onChange={(e) => setSintomas(e.target.value)}
-            placeholder="Describe los Síntomas"
+            placeholder={data.formLabelsCollection.items[0].phSymptoms}
           />
         </div>
         <input
           type="submit"
           className="bg-indigo-600 w-full p-3 text-white uppercase font-bold 
         hover:bg-indigo-700 cursor-pointer transition-colors rounded-md"
-          value={paciente.id ? 'Editar Paciente' : 'Agregar Paciente'}
+          value={
+            paciente.id
+              ? data.formLabelsCollection.items[0].editPatient
+              : data.formLabelsCollection.items[0].addPatient
+          }
         />
       </form>
     </div>

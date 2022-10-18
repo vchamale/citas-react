@@ -2,8 +2,34 @@ import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Formulario from './components/Formulario';
 import ListadoPacientes from './components/ListadoPacientes';
+import { useQuery, gql } from '@apollo/client';
+
+const QUERY = gql`
+  query formLabels {
+    formLabelsCollection {
+      items {
+        titleP1
+        titleP2
+        titleP3
+        error
+        petName
+        phPetName
+        owner
+        phOwner
+        email
+        phEmail
+        date
+        symptoms
+        phSymptoms
+        editPatient
+        addPatient
+      }
+    }
+  }
+`;
 
 function App() {
+  const { data, loading } = useQuery(QUERY);
   const [pacientes, setPacientes] = useState([]);
   const [paciente, setPaciente] = useState([]);
 
@@ -25,7 +51,9 @@ function App() {
     );
     setPacientes(pacientesActualizados);
   };
-  return (
+  return loading ? (
+    <>Loading</>
+  ) : (
     <div className="container mx-auto mt-20">
       <Header />
       <div className="mt-12 md:flex">
@@ -34,11 +62,14 @@ function App() {
           pacientes={pacientes}
           setPacientes={setPacientes}
           setPaciente={setPaciente}
+          data={data}
         />
         <ListadoPacientes
           setPaciente={setPaciente}
           pacientes={pacientes}
           eliminarPaciente={eliminarPaciente}
+          data={data}
+          loading={loading}
         />
       </div>
     </div>
