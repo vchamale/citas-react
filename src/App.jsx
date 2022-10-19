@@ -1,78 +1,15 @@
-import { useState, useEffect } from 'react';
-import Header from './components/Header';
-import Formulario from './components/Formulario';
-import ListadoPacientes from './components/ListadoPacientes';
-import { useQuery, gql } from '@apollo/client';
-
-const QUERY = gql`
-  query formLabels {
-    formLabelsCollection {
-      items {
-        titleP1
-        titleP2
-        titleP3
-        error
-        petName
-        phPetName
-        owner
-        phOwner
-        email
-        phEmail
-        date
-        symptoms
-        phSymptoms
-        editPatient
-        addPatient
-      }
-    }
-  }
-`;
+import VetMain from './components/VetMain';
+import LanguageSelector from './components/LanguageSelector';
+import { useState } from 'react';
 
 function App() {
-  const { data, loading } = useQuery(QUERY);
-  const [pacientes, setPacientes] = useState([]);
-  const [paciente, setPaciente] = useState([]);
+  const [language, setLanguage] = useState('');
 
-  useEffect(() => {
-    const obtenerLS = () => {
-      const pacientesLS = JSON.parse(localStorage.getItem('pacientes')) ?? [];
-      setPacientes(pacientesLS);
-    };
-    obtenerLS();
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('pacientes', JSON.stringify(pacientes));
-  }, [pacientes]);
-
-  const eliminarPaciente = (id) => {
-    const pacientesActualizados = pacientes.filter(
-      (paciente) => paciente.id !== id
-    );
-    setPacientes(pacientesActualizados);
-  };
-  return loading ? (
-    <>Loading</>
-  ) : (
-    <div className="container mx-auto mt-20">
-      <Header />
-      <div className="mt-12 md:flex">
-        <Formulario
-          paciente={paciente}
-          pacientes={pacientes}
-          setPacientes={setPacientes}
-          setPaciente={setPaciente}
-          data={data}
-        />
-        <ListadoPacientes
-          setPaciente={setPaciente}
-          pacientes={pacientes}
-          eliminarPaciente={eliminarPaciente}
-          data={data}
-          loading={loading}
-        />
-      </div>
-    </div>
+  return (
+    <>
+      <LanguageSelector language={language} setLanguage={setLanguage} />
+      <VetMain language={language} />
+    </>
   );
 }
 

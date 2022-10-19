@@ -3,7 +3,7 @@ const Paciente = ({
   setPaciente,
   eliminarPaciente,
   data,
-  contentful
+  loading
 }) => {
   const { nombre, propietario, email, fecha, sintomas, id } = paciente;
 
@@ -25,7 +25,7 @@ const Paciente = ({
         <span className="font-normal normal-case">{propietario}</span>
       </p>
       <p className="font-bold mb-3 text-gray-700 uppercase">
-        {data.formLabelsCollection.items[0].email}
+        {data.formLabelsCollection.items[0].email} {''}
         {''}
         <span className="font-normal normal-case">{email}</span>
       </p>
@@ -44,7 +44,7 @@ const Paciente = ({
           font-bold uppercase rounded-lg"
           onClick={() => setPaciente(paciente)}
         >
-          {contentful.patientCardsCollection.items[0].editButton}{' '}
+          {data.patientCardsCollection.items[0].editButton}{' '}
         </button>
         <button
           type="button"
@@ -52,7 +52,7 @@ const Paciente = ({
           font-bold uppercase rounded-lg"
           onClick={handleEliminar}
         >
-          {contentful.patientCardsCollection.items[0].deleteButton}{' '}
+          {data.patientCardsCollection.items[0].deleteButton}{' '}
         </button>
       </div>
     </div>

@@ -1,18 +1,4 @@
-import { useQuery, gql } from '@apollo/client';
-
-const titleQUERY = gql`
-  query title {
-    mainTitleCollection {
-      items {
-        titleP1
-        titleP2
-      }
-    }
-  }
-`;
-
-function Header() {
-  const { data, loading } = useQuery(titleQUERY);
+function Header({ data, loading }) {
   return loading ? (
     <>loading</>
   ) : (
