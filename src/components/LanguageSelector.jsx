@@ -6,7 +6,7 @@ const LanguageSelector = ({ language, setLanguage }) => {
   const [buttonText, setButtonText] = useState(spanish);
 
   const switchLanguage = () => {
-    if (language == '' || language == english) {
+    if (language === '' || language === english) {
       setLanguage(spanish);
       console.log('entramos al if');
       setButtonText(english);
