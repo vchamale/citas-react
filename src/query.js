@@ -1,9 +1,9 @@
 import { gql } from '@apollo/client';
 
-export const changeLanguage = (language) => {
-  const QUERY = gql`
+export const QUERY = (locale) => {
+  return gql`
   query formLabels {
-    formLabelsCollection(locale: "${language}") {
+    formLabelsCollection(locale: "${locale}") {
       items {
         titleP1
         titleP2
@@ -22,13 +22,13 @@ export const changeLanguage = (language) => {
         addPatient
       }
     }
-    mainTitleCollection(locale: "${language}") {
+    mainTitleCollection(locale: "${locale}") {
       items {
         titleP1
         titleP2
       }
     }
-    patientCardsCollection(locale: "${language}") {
+    patientCardsCollection(locale: "${locale}") {
       items {
         titleP1Empty
         titleP2Empty
@@ -42,6 +42,4 @@ export const changeLanguage = (language) => {
     }
   }
 `;
-
-  return QUERY;
 };
