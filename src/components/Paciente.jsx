@@ -1,40 +1,47 @@
 const Paciente = ({
+  editarPaciente,
   paciente,
-  setPaciente,
-  eliminarPaciente,
-  data,
-  loading
+  eliminarPaciente2,
+  petName,
+  owner,
+  emailLabel,
+  date,
+  symptoms,
+  editButton,
+  deleteButton
 }) => {
-  const { nombre, propietario, email, fecha, sintomas, id } = paciente;
+  const { nombre, propietario, email, fecha, sintomas } = paciente;
 
   const handleEliminar = () => {
     const respuesta = confirm('Deseas eliminar este paciente?');
-
     if (respuesta) {
-      eliminarPaciente(id);
+      eliminarPaciente2(paciente);
     }
   };
   return (
-    <div className="mx-5 my-10 bg-white m-3 shadow-md px-5 py-10 rounded-xl">
+    <div
+      data-testid="patientDiv"
+      className="mx-5 my-10 bg-white m-3 shadow-md px-5 py-10 rounded-xl"
+    >
       <p className="font-bold mb-3 text-gray-700 uppercase">
-        {data.formLabelsCollection.items[0].petName} {''}
+        {petName} {''}
         <span className="font-normal normal-case">{nombre}</span>
       </p>
       <p className="font-bold mb-3 text-gray-700 uppercase">
-        {data.formLabelsCollection.items[0].owner} {''}
+        {owner} {''}
         <span className="font-normal normal-case">{propietario}</span>
       </p>
       <p className="font-bold mb-3 text-gray-700 uppercase">
-        {data.formLabelsCollection.items[0].email} {''}
+        {emailLabel} {''}
         {''}
         <span className="font-normal normal-case">{email}</span>
       </p>
       <p className="font-bold mb-3 text-gray-700 uppercase">
-        {data.formLabelsCollection.items[0].date} {''}
+        {date} {''}
         <span className="font-normal normal-case">{fecha}</span>
       </p>
       <p className="font-bold mb-3 text-gray-700 uppercase">
-        {data.formLabelsCollection.items[0].symptoms} {''}
+        {symptoms} {''}
         <span className="font-normal normal-case">{sintomas}</span>
       </p>
       <div className="flex justify-between mt-10">
@@ -42,9 +49,9 @@ const Paciente = ({
           type="button"
           className="py-2 px-10 bg-indigo-600 hover:bg-indigo-700 text-white 
           font-bold uppercase rounded-lg"
-          onClick={() => setPaciente(paciente)}
+          onClick={() => editarPaciente(paciente)}
         >
-          {data.patientCardsCollection.items[0].editButton}{' '}
+          {editButton}{' '}
         </button>
         <button
           type="button"
@@ -52,7 +59,7 @@ const Paciente = ({
           font-bold uppercase rounded-lg"
           onClick={handleEliminar}
         >
-          {data.patientCardsCollection.items[0].deleteButton}{' '}
+          {deleteButton}{' '}
         </button>
       </div>
     </div>
