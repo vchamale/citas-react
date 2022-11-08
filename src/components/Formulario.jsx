@@ -7,10 +7,6 @@ import {
 } from '../reducers/patientServices';
 
 function Formulario({
-  paciente,
-  pacientes,
-  setPacientes,
-  setPaciente,
   titleP1,
   titleP3,
   errorMessage,
@@ -55,7 +51,6 @@ function Formulario({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Validación del Formulario
 
     if ([nombre, propietario, email, fecha, sintomas].includes('')) {
       setError(true);
@@ -72,21 +67,11 @@ function Formulario({
 
       if (pacienteEdit.id) {
         objetoPaciente.id = pacienteEdit.id;
-        // // Editando el Registro...
-        // objetoPaciente.id = paciente.id;
-        // // Itera sobre el array de pacientes y encuentra match de id.
-        // const pacientesActualizados = pacientes.map((pacienteState) =>
-        //   pacienteState.id === paciente.id ? objetoPaciente : pacienteState
-        // );
 
-        // setPacientes(pacientesActualizados);
-        // setPaciente({}); // Limpiando paciente de memoria.
         dispatch(editPatientServices(objetoPaciente));
       } else {
         // Nuevo Registro...
         objetoPaciente.id = generarId();
-        // setPacientes([...pacientes, objetoPaciente]);
-
         dispatch(addPatientService(objetoPaciente));
       }
 

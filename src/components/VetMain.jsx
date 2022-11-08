@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import Header from './Header';
 import Formulario from './Formulario';
 import ListadoPacientes from './ListadoPacientes';
@@ -10,33 +10,11 @@ import { getLocalServices } from '../reducers/patientServices';
 function VetMain({ language }) {
   const dispatch = useDispatch();
   const { data, loading } = useQuery(QUERY(language));
-  const [pacientes, setPacientes] = useState([]);
-  const [paciente, setPaciente] = useState([]);
 
   useEffect(() => {
     dispatch(getLocalServices());
   }, []);
 
-  // useEffect(() => {
-  //   const obtenerLS = () => {
-  //     const pacientesLS = JSON.parse(localStorage.getItem('pacientes')) ?? [];
-  //     setPacientes(pacientesLS);
-  //   };
-  //   obtenerLS();
-  // }, []);
-
-  // useEffect(() => {
-  //   const getLS = JSON.parse(localStorage.getItem('pacientes'));
-  //   console.log(getLS);
-  //   //localStorage.setItem('pacientes', JSON.stringify(pacientes));
-  // }, [pacientes]);
-
-  const eliminarPaciente = (id) => {
-    const pacientesActualizados = pacientes.filter(
-      (paciente) => paciente.id !== id
-    );
-    setPacientes(pacientesActualizados);
-  };
   return loading ? (
     <>Loading</>
   ) : (
@@ -49,11 +27,6 @@ function VetMain({ language }) {
         />
         <div className="mt-12 md:flex">
           <Formulario
-            paciente={paciente}
-            pacientes={pacientes}
-            setPacientes={setPacientes}
-            setPaciente={setPaciente}
-            data={data}
             titleP1={data.formLabelsCollection.items[0].titleP1}
             titleP3={data.formLabelsCollection.items[0].titleP3}
             errorMessage={data.formLabelsCollection.items[0].error}
@@ -70,9 +43,6 @@ function VetMain({ language }) {
             addPatient={data.formLabelsCollection.items[0].addPatient}
           />
           <ListadoPacientes
-            setPaciente={setPaciente}
-            pacientes={pacientes}
-            eliminarPaciente={eliminarPaciente}
             titleP1={data.patientCardsCollection.items[0].titleP1}
             titleP2={data.patientCardsCollection.items[0].titleP2}
             titleP3={data.patientCardsCollection.items[0].titleP3}

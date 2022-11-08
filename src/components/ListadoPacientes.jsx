@@ -4,9 +4,6 @@ import { patientActions } from '../reducers/paciente';
 import { deletePatientServices } from '../reducers/patientServices';
 
 function ListadoPacientes({
-  pacientes,
-  setPaciente,
-  eliminarPaciente,
   titleP1,
   titleP2,
   titleP3,
@@ -31,7 +28,6 @@ function ListadoPacientes({
   const eliminarPaciente2 = (data) => {
     dispatch(deletePatientServices(data));
   };
-
   return (
     <div className="md:w-1/2 lg:m-3/5 md:h-screen overflow-y-scroll">
       {pacientesRedux.length > 0 ? (
@@ -46,8 +42,6 @@ function ListadoPacientes({
               key={paciente.id}
               editarPaciente={editarPaciente}
               paciente={paciente}
-              setPaciente={setPaciente}
-              eliminarPaciente={eliminarPaciente}
               eliminarPaciente2={eliminarPaciente2}
               petName={petName}
               owner={owner}

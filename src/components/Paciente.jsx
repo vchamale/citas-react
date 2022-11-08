@@ -1,8 +1,6 @@
 const Paciente = ({
   editarPaciente,
   paciente,
-  setPaciente,
-  eliminarPaciente,
   eliminarPaciente2,
   petName,
   owner,
