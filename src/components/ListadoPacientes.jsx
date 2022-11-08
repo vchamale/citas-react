@@ -3,23 +3,19 @@ import { useSelector, useDispatch } from 'react-redux';
 import { patientActions } from '../reducers/paciente';
 import { deletePatientServices } from '../reducers/patientServices';
 
-function ListadoPacientes({
-  titleP1,
-  titleP2,
-  titleP3,
-  petName,
-  owner,
-  emailLabel,
-  date,
-  symptoms,
-  editButton,
-  deleteButton,
-  titleP1Empty,
-  titleP2Empty,
-  titleP3Empty
-}) {
+function ListadoPacientes() {
   const dispatch = useDispatch();
   const { pacientesRedux } = useSelector((state) => state.pacienteStore);
+  const {
+    patientCardsCollection: {
+      titleP1,
+      titleP2,
+      titleP3,
+      titleP1Empty,
+      titleP2Empty,
+      titleP3Empty
+    }
+  } = useSelector((state) => state.pacienteUIStore);
 
   const editarPaciente = (data) => {
     dispatch(patientActions.patientToEdit(data));
@@ -43,13 +39,6 @@ function ListadoPacientes({
               editarPaciente={editarPaciente}
               paciente={paciente}
               eliminarPaciente2={eliminarPaciente2}
-              petName={petName}
-              owner={owner}
-              emailLabel={emailLabel}
-              date={date}
-              symptoms={symptoms}
-              editButton={editButton}
-              deleteButton={deleteButton}
             />
           ))}
         </>

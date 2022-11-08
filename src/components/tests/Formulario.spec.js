@@ -12,44 +12,12 @@ describe('Paciente', () => {
     sintomas: 'Come demasiado',
     id: 'mostUnikeID1'
   };
-  const pacientes = [
-    {
-      // nombre: 'ChocoKrispis',
-      // propietario: 'Melvin',
-      // email: 'chocokrispis@kellogs.com',
-      // fecha: '08/08/2022',
-      // sintomas: 'Come demasiado',
-      // id: 'mostUnikeID1'
-    }
-  ];
-  const setPaciente = jest.fn(() => {});
-  const setPacientes = jest.fn(() => {});
-  // const generarId = jest.fn(() => {});
+  const pacientes = [{}];
+
   const handleSubmit = jest.fn(() => {});
 
   it('Loads Form', () => {
-    render(
-      <Formulario
-        paciente={paciente}
-        pacientes={pacientes}
-        setPacientes={setPacientes}
-        setPaciente={setPaciente}
-        titleP1={'Seguimiento Pacientes'}
-        titleP2={'Adminístralos'}
-        errorMessage={'Campos requeridos'}
-        petName={'Nombre Mascota: '}
-        phPetName={'Nombre de la Mascota'}
-        owner={'Propietario: '}
-        phOwner={'Nombre Propietario'}
-        emailLabel={'Correo Electrónico: '}
-        phEmail={'Correo Electrónico'}
-        date={'Fecha de Alta:'}
-        symptoms={'Síntomas: '}
-        phSymptoms={'Síntomas'}
-        editPatient={'Editar'}
-        addPatient={'Agregar'}
-      />
-    );
+    render(<Formulario />);
     expect(screen.getByTestId('h2Title')).toBeInTheDocument();
     expect(screen.getByTestId('pTitle')).toBeInTheDocument();
     expect(screen.getByText('Nombre Mascota:')).toBeInTheDocument();
@@ -70,54 +38,12 @@ describe('Paciente', () => {
     expect(screen.getByText('Editar')).toBeInTheDocument();
   });
   it('Error message pops up when empty fields', () => {
-    render(
-      <Formulario
-        paciente={{}}
-        pacientes={[]}
-        setPacientes={setPacientes}
-        setPaciente={setPaciente}
-        titleP1={'Seguimiento Pacientes'}
-        titleP2={'Adminístralos'}
-        errorMessage={'Campos requeridos'}
-        petName={'Nombre Mascota: '}
-        phPetName={'Nombre de la Mascota'}
-        owner={'Propietario: '}
-        phOwner={'Nombre Propietario'}
-        emailLabel={'Correo Electrónico: '}
-        phEmail={'Correo Electrónico'}
-        date={'2020-05-12'}
-        symptoms={'Síntomas: '}
-        phSymptoms={'Síntomas'}
-        editPatient={'Editar'}
-        addPatient={'Agregar'}
-      />
-    );
+    render(<Formulario />);
     fireEvent.click(screen.getByText('Agregar'));
     expect(screen.getByText('Campos requeridos')).toBeInTheDocument();
   });
   it('Successfully Adds a new Patient', () => {
-    render(
-      <Formulario
-        paciente={{}}
-        pacientes={[]}
-        setPacientes={setPacientes}
-        setPaciente={setPaciente}
-        titleP1={'Seguimiento Pacientes'}
-        titleP2={'Adminístralos'}
-        errorMessage={'Campos requeridos'}
-        petName={'Nombre Mascota: '}
-        phPetName={'Nombre de la Mascota'}
-        owner={'Propietario: '}
-        phOwner={'Nombre Propietario'}
-        emailLabel={'Correo Electrónico: '}
-        phEmail={'Correo Electrónico'}
-        date={'Fecha de Alta:'}
-        symptoms={'Síntomas: '}
-        phSymptoms={'Síntomas'}
-        editPatient={'Editar'}
-        addPatient={'Agregar'}
-      />
-    );
+    render(<Formulario />);
 
     fireEvent.change(screen.getByTestId('petNameId'), {
       target: { value: 'buenassss' }
