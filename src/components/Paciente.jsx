@@ -1,16 +1,14 @@
-const Paciente = ({
-  editarPaciente,
-  paciente,
-  eliminarPaciente2,
-  petName,
-  owner,
-  emailLabel,
-  date,
-  symptoms,
-  editButton,
-  deleteButton
-}) => {
+import { useSelector } from 'react-redux';
+
+const Paciente = ({ editarPaciente, paciente, eliminarPaciente2 }) => {
   const { nombre, propietario, email, fecha, sintomas } = paciente;
+  const {
+    formLabelCollection: { petName, owner, email: emailLabel, date, symptoms }
+  } = useSelector((state) => state.pacienteUIStore);
+
+  const {
+    patientCardsCollection: { editButton, deleteButton }
+  } = useSelector((state) => state.pacienteUIStore);
 
   const handleEliminar = () => {
     const respuesta = confirm('Deseas eliminar este paciente?');
@@ -18,6 +16,7 @@ const Paciente = ({
       eliminarPaciente2(paciente);
     }
   };
+
   return (
     <div
       data-testid="patientDiv"

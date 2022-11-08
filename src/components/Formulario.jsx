@@ -6,24 +6,27 @@ import {
   editPatientServices
 } from '../reducers/patientServices';
 
-function Formulario({
-  titleP1,
-  titleP3,
-  errorMessage,
-  petName,
-  phPetName,
-  owner,
-  phOwner,
-  emailLabel,
-  phEmail,
-  date,
-  symptoms,
-  phSymptoms,
-  editPatient,
-  addPatient
-}) {
+function Formulario() {
   const dispatch = useDispatch();
   const { pacienteEdit } = useSelector((state) => state.pacienteStore);
+  const {
+    formLabelCollection: {
+      titleP1,
+      titleP3,
+      error: errorMessage,
+      petName,
+      phPetName,
+      owner,
+      phOwner,
+      email: emailLabel,
+      phEmail,
+      date,
+      symptoms,
+      phSymptoms,
+      editPatient,
+      addPatient
+    }
+  } = useSelector((state) => state.pacienteUIStore);
   const [nombre, setNombre] = useState('');
   const [propietario, setPropietario] = useState('');
   const [email, setEmail] = useState('');

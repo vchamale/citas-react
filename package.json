@@ -9,7 +9,7 @@
     "format": "prettier --write .",
     "lint": "eslint --fix . --ext .js,.jsx",
     "prepare": "husky install",
-    "test": "jest --Watch"
+    "test": "jest "
   },
   "dependencies": {
     "@apollo/client": "^3.7.0",
@@ -19,6 +19,7 @@
     "@testing-library/react": "^13.4.0",
     "@types/jest": "^29.2.1",
     "babel-jest": "^29.2.2",
+    "contentful": "^9.2.9",
     "dotenv": "^16.0.3",
     "graphql": "^16.6.0",
     "react": "^18.2.0",
